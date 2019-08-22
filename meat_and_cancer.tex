@@ -184,10 +184,31 @@ On the basis of the previous analysis we still have no evidences to ignore direc
 
 Other of the biggest studies like English et al \cite{english} included also fish as possible cause.
 
-\section{Leukemia versus Life-style Cancers. The Berkson Bias}
+\section{Leukemia versus Life-style Cancers. The Collider Bias}
 \label{sec:cross}
 
 Extracted from Cross study on 2007 \cite{cross}: "Surprisingly, both leukemia and melanoma were inversely associated with processed meat intake; the inverse association for leukemia was mainly for lymphocytic leukemia (n = 534; HR = 0.70; 95\% CI = 0.52–0.93; p for trend = 0.05) and not myeloid and monocytic leukemia (n = 457; HR = 0.88; 95\% CI = 0.64–1.20; p for trend = 0.73). The associations between processed meat intake and cancer risk are summarized in Figure 2, in order of risk magnitude."
+
+According to the described cohort follow-up and case ascertainment: "these analyses was calculated from baseline (1995–1996) until censoring at the end of 2003, or when the participant moved out of one of the eight study areas, had a cancer diagnosis, or died, whichever came first". Thus, analyzing several types of cancer as target while implicitely conditioning on not having any other cancer converts the variable "any cancer" in a collider.
+
+Considering
+\begin{itemize}
+\item X: processed meat
+\item Y: leukemia
+\item C1: colorectal cancer
+\item C: any type of cancer
+\end{itemize}
+
+and assuming the following causal diagram:
+
+\begin{tikzcd}
+X \arrow{d} \arrow{r} &Y \arrow{d}\\
+C1 \arrow{r} &C
+\end{tikzcd}
+
+So conditioning on the collider C opens the path Y -> C <-C1 <-X, invalidating the results of the study. This situation is typically known as collider bias. And a famous example is the Berkson Paradox \cite{bookofwhy}.
+
+And this could explain these strange results where cancers usually associated with dietary lifestyle as colorectal have relative risk ratios above 1 (HR=1.2), whereas leukemia shows apparently an inverse relation to processed meat, with an HR of 0.7.
 
 \textbf{\textit{To be continued...}}
 
