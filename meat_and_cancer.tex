@@ -1,0 +1,304 @@
+\documentclass{article}
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{tikz-cd}
+
+\title{Meat \& cancer: a critical review based on causal analysis \it{(work in progress)}}
+
+%\date{September 9, 1985}	% Here you can change the date presented in the paper title
+%\date{} 					% Or removing it
+
+\author{
+  Any volunteer?\thanks{Use footnote for providing further
+    information about author (webpage, alternative
+    address)---\emph{not} for acknowledging funding agencies.} \\
+Any Department\\
+  Anywhere\\
+  %% examples of more authors
+   \And
+ Enrique Otero \\
+  Madrid, Spain\\
+  @eoteromuras \\
+  \texttt{eoteromuras@gmail.com} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+According to World Health Organization (WHO), processed meat has been declared Group 1 carcinogenic to humans. That means that according to epidemiological studies there is a convincing evidence that the agent causes cancer. However, reviewing some of the mainly referred studies with the lenses of causal inference analysis reveals possible flaws that would invalidate these conclusions. The author(s) intention is to discuss these studies with statistical rigor. By applying last accepted knowledge in the field of causal diagrams and \textit{do-calculus}. With main focus on transparent exposition of health domain assumptions. And the translation of these assumptions into explicit language, diagrams and formulas. So the veracity of domain assumptions can be refuted according to domain expertise. And any conclusion derived from these assumptions being validated or invalidated on the bases of axiomatic logic and maths.
+
+% Despite how unhealthy or unsustainable meat consumption could be, carcinogenic Group 1 statements could be based on uncomplete models, but they at least should be based on correct analysis.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{Meat \and Cancer \and Causality}
+
+
+\section{Introduction}
+ In October 2015 IARC held an expert panel that considered the evidence for read and processed meats as possible human carcinogens. They classified processed meat as a Group 1 carcinogenic to humans, and red meat as Group 2A, probably carcinogenic \cite{whoint}. A summary of the final evaluations were published online in The Lancet Oncology \cite{lancet}. And the details of these conclusions were published later in a monograph in 2016 \cite{monograph}.
+
+The consumption of processed meat was associated with small increases in the risk of cancer in the studies reviewed. In these studies, the risk generally increased with the amount of meat consumed \cite{whoint}.
+
+ In the monograph the authors describe five criteria they applied in reviewing and interpreting the available literature in order to be considered for their meta-analysis. One of these criteria, which we will focus specifically on this paper is the "Adjustment for potential confounding factors"
+
+
+Close to 20 large,
+%high-quality
+cohort studies were considered in the evaluation, with the results
+of some studies reported in several publications.
+The follow-ups of these studies extended from as
+early as the 1990s until the 2010s. A large number
+of case–control studies (approximately 150),
+conducted across the world were reviewed for
+this evaluation.
+
+%Associations between colorectal cancer and consumption of processed meat were examined in 18 informative cohort studies and two pooled analyses. Eighteen cohort studies investigated the association between processed meat and incidence of cancer of the colorectum. Positive associations between consumption of processed meat and incidence of cancer of the colorectum were observed in 12 studies, including some of the larger studies: a Japanese cohort, the Nurses’ Health Study (NHS), the Health Professionals Follow-Up Study (HPFS), the EPIC study, the Cancer Prevention Study II (CPS-II), and the National Institutes of Health – American Association of Retired Persons (NIH-AARP) Diet and Health Study
+
+The Working Group considered that approximately
+10\% of all case–control studies reviewed
+were informative for the assessment of the
+consumption of processed meat in relation to
+incidence of cancer of the colorectum. So they should be 150/10 = 15 studies. Anyway, just after that they say: "Six of the nine studies considered showed positive associations with cancer of the colorectum.". A typo?
+
+Moreover they present conclusions from a meta-analysis including data from 10
+cohort studies that reported a statistically significant
+dose–response association between consumption
+of red meat and/or processed meat and cancer of
+the colorectum. More concretely, they refer to Chan et al \cite{chan}
+%"[...] the relative risks for the highest compared with the lowest intake [...] for anincrease of 100 g/day of red meat was 1.17 (95\% CI, 1.05–1.31; 8 studies) for colorectal cancer [...] For processed meats, the relative risk for the highest compared with the lowest intake was 1.17 (95\% CI, 1.09–1.25; I2 = 6\%; 13 studies) for colorectal cancer" "The relative risks for an increase of 50 g/day were 1.18 (95\% CI, 1.10–1.28; I2 = 12\%; 9 studies) for colorectal cancer, ".
+
+Conclusion on dose-response association for processed meat is summarized in \cite{monograph} as "[...] each 50 gram portion of processed meat eaten daily increases the risk of
+colorectal cancer by 18\%"
+
+In the next section we will focus on Chan meta-analysis \cite{chan}
+
+
+\section{Processed Meat and Colorectal Cancer Incidence}
+\label{sec:headings}
+
+In \cite{chan} they "conducted meta-analyses
+for red and processed meats, combined and separately, using the
+description of the meat items given in the articles. In highest versus
+lowest meta-analyses (the comparison of the highest intake level to
+the lowest intake level), the relative risk (RR) estimate from each
+study was weighted by the inverse of the variance to calculate
+summary relative risks (RR) and 95\% confidence intervals (CI). In
+linear dose-response meta-analyses, we pooled the relative risk
+estimates per unit of intake increase (with its standard error)
+reported in the studies, or computed by us from the categorical
+data using generalized least-squares for trend estimation"
+
+Furthermore, "Dose-response relationships were expressed per increment of intake of 100 grams
+per day for red and processed meat, and 50 grams per day for processed meat as in previous meta-analyses \cite{aicr}, \cite{sandhu}
+
+And "To assess heterogeneity, we computed the Cochran Q test and I2
+statistic. Sources of heterogeneity were explored in stratified
+analysis and by linear meta-regression, with gender, geographic
+area, year of publication, length of follow-up, and adjustment for
+confounders as potential explanatory factors".
+
+
+
+See Section \ref{sec:headings}.
+
+\subsection{Dose-response Analysis on Processed Meat. And Confounders}
+
+In detail, in \cite{chan} 26 publications from 21 studies were included in the dose response meta-analysis of cancer incidence. Being 15 publications from 14 studies on processed meat. Results were: Pooled RR (95\% CI)=1.18 (1.10–1.28), P-value=0.00, n=9, Heterogeneity (I2)=12\%, P-value=0.33. Though I-squared level of 12\% may seem no significant, specially with a p-value of 0.33, critizism has been done to I-2 as measure of heterogeneity, specially when the number of studies is small \cite{hippel}.
+
+Chan et al also refer to other studies with similar conclusions, like \cite{aicr,wei2009}
+Though after their conclusions authors also say: "In a more recent article on the NHS and the HPFS, the
+associations of red meat and processed meat and colon cancer were
+attenuated after better adjustment for confounders and longer followup \cite{wei}
+
+
+Although we cannot rule out residual confounding, most studies
+included in the meta-analyses adjusted results by smoking, alcohol
+consumption, BMI and physical activity [18,22–24,26,27,
+50,51,54,56,57,64] in addition to age, sex and energy; in several
+cohort studies the multivariate adjusted models also included folate
+intake [18,24,34,50], and other studies additionally adjusted for
+aspirin or other anti-inflammatory drug use [23,25,53,54]. Several
+potential confounders were not included in the final statistical
+models in some studies because, as the authors reported, their
+inclusion in the model did not substantially modified the relative
+risk estimates [19,33,49,52,60,63].
+
+Concretely: "In all studies, relative risk estimates were adjusted for age and
+sex, and all except two adjusted for total energy intake. More than
+half of the study results were adjusted for body mass index (BMI),
+smoking, alcohol consumption, or physical activity, close to half
+controlled for dairy food or calcium intake, social economic status,
+family history of colorectal cancer, or plant food or folate intake.
+In some studies, the estimates were controlled for use of nonsteroidal
+anti-inflammatory drugs, fish or white meat intake".
+
+And for instance: "Stratified analysis did not suggest any difference across gender. The
+association between red meat and colon cancer tended to be stronger
+in European studies (RR for 100 g/day increase = 1.29, 95\% CI =
+1.0821.54) (3 studies, 1307 cases) compared to the North American
+(RR for 100 g/day increase = 1.11, 95\% CI = 0.8621.44) (4 studies, 1476
+cases) and Asia-Pacific studies (RR for100 g/day increase = 0.94, 95\% CI =
+0.6921.27, P = 0.67) (3 studies, 732 cases)."
+The biggest study analyzed in \cite{chan} regarding number of people was \cite{cross} with 494036 men and women. In this study adjusts were made on "Age, sex, ethnicity, BMI, smoking habits, alcohol intake, physical activity, total energy intake, fruit and vegetable intake, education level, marital status, family history of cancer"
+This study according to weight and results is the one that contributes the most to RR for colorectal cancer on the consumption of processed meat on Chan's meta-analysis. In the next section we'll try to proof that Cross study could be flawed because of a wrong assumption and wrong experiment design on adjusting on too much variables.
+
+
+
+
+\section{Don't Discard Fiber, Vegetables, Fruits or Life-style as Possible Confounder}
+
+In 2001 Sandhu et al published a meta-analysis on the relation between meat consumption and colorectal cancer \cite{sandhu}. When discussing "Meat and Other Dietary and Associated Factors" they say: "However, the current
+prospective epidemiological data show only a weak negative
+association between vegetables and fruits consumption and risk
+of colorectal cancer (4, 7). Four recent studies, two randomized
+trials on adenoma recurrence (57, 58) and two large prospective
+studies on colorectal cancer (59, 60) found no association
+among fiber, vegetables, and fruits consumption and risk of colorectal cancer. The two prospective studies based on the
+Nurses’ Health Study (59) and a combined analysis of the
+Nurses’ Heath Study and the Health Professionals’ Follow-up
+Study (60) both adjusted for red meat intake when ascertaining
+the effect of fiber and vegetables and fruits consumption on
+colorectal cancer risk, respectively. The multivariate estimates
+did not materially differ from the unadjusted estimates".
+
+But even if the total effect from fiber, vegetables, and fruits consumption on colorrectal cancer is negligible, the direct effect could be important.
+
+As an example, considering:
+
+\begin{itemize}
+\item X: meat
+\item Y: colorrectal cancer
+\item V: vegetables
+\item U: some dietary lifestyle, confounder of V and X
+\end{itemize}
+
+with the following causal diagram:
+
+\begin{tikzcd}
+X \arrow{r} &Y\\
+U \arrow{u} \arrow{r} &V \arrow{u}
+\end{tikzcd}
+
+If "no association among fiber, vegetables, and fruits consumption and risk of colorectal cancer"
+\begin{equation}
+  P(Y|do(V))=P(Y)
+\end{equation}
+
+Otherwise, according to the provided causal diagram:
+\begin{equation}
+P(Y|do(X))=\sum _{i=1}^{N} P(Y|X,V_i)P(V_i) \neq P (Y|X)
+\end{equation}
+
+
+So we shouldn't discard fiber, vegetables and fruits consumption as possible confounders on the basis of the previous analysis.
+
+Other of the biggest studies like English et al \cite{english} included also fish as possible cause.
+
+Moreover, considering dietary lifestyle as a confounder helps to understand some strange results obtained in studies like \cite{cross} that we will discuss in the next section.
+
+\section{Leukemia versus Life-style Cancers. The Berkson Bias}
+
+Extracted from Cross study on 2007 \cite{cross}: "Surprisingly, both leukemia and melanoma were inversely associated with processed meat intake; the inverse association for leukemia was mainly for lymphocytic leukemia (n = 534; HR = 0.70; 95\% CI = 0.52–0.93; p for trend = 0.05) and not myeloid and monocytic leukemia (n = 457; HR = 0.88; 95\% CI = 0.64–1.20; p for trend = 0.73). The associations between processed meat intake and cancer risk are summarized in Figure 2, in order of risk magnitude."
+
+\textbf{\textit{To be continued...}}
+
+\section{Conclusions}
+
+\textbf{\textit{To be finished...}}
+
+
+\bibliographystyle{unsrt}
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{whoint}
+\newblock Q\&A on the carcinogenicity of the consumption of red meat and processed meat
+\newblock https://www.who.int/features/qa/cancer-red-meat/en/
+\newblock October 2015
+
+\bibitem{lancet}
+Bouvard V. et al.
+\newblock Carcinogenicity of consumption of red and processed meat
+%\newblock https://www.researchgate.net/profile/Veronique\_Bouvard/publication/283443910\_Carcinogenicity\_of\_consumption\_of\_red\_and\_processed\_meat/links/5ac393f4aca272a2c99910f1/Carcinogenicity-of-consumption-of-red-and-processed-meat.pdf
+
+\bibitem{monograph}
+IARC Monographs on the Evaluation of Carcinogenic Risks to Humans. Red Meat and Processed Meat. Vol 114
+https://monographs.iarc.fr/wp-content/uploads/2018/06/mono114.pdf
+
+\bibitem{chan}
+Chan et al.
+\newblock Red and Processed Meat and Colorectal Cancer Incidence: Meta-Analysis of Prospective Studies
+https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020456\&type=printable
+
+
+\bibitem{aicr}
+World Cancer Research Fund/American Institute for Cancer Research. (2007)
+Food, Nutrition, Physical Activity, and the Prevention of Cancer: a Global
+Perspective Washington DC: AICR.
+
+\bibitem{sandhu}
+Sandhu MS, White IR, McPherson K (2001) Systematic review of the
+prospective cohort studies on meat consumption and colorectal cancer risk: a
+meta-analytical approach. Cancer Epidemiol Biomarkers Prev 10: 439–446
+
+\bibitem{hippel}
+Von Hippel P.
+The heterogeneity statistic I2 can be biased in small meta-analyses
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4410499/
+BMC Med Res Methodol. 2015; 15: 35.
+
+\bibitem{wei}
+Wei EK, Giovannucci E, Wu K, Rosner B, Fuchs CS, et al. (2004) Comparison
+of risk factors for colon and rectal cancer. IntJCancer 108: 433–442.
+
+\bibitem{wei2009}
+Wei EK, Colditz GA, Giovannucci EL, Fuchs CS, Rosner BA (2009)
+Cumulative risk of colon cancer up to age 70 years by risk factor status using
+data from the Nurses’ Health Study. AmJEpidemiol 170: 863–872.
+
+\bibitem{english}
+English DR, MacInnis RJ, Hodge AM, Hopper JL, Haydon AM, et al. (2004)
+Red meat, chicken, and fish consumption and risk of colorectal cancer. Cancer
+Epidemiol Biomarkers Prev 13: 1509–1514.
+
+\bibitem{cross}
+Cross et al. 2007
+A prospective study of red and processed meat intake in relation to cancer risk.
+
+\end{thebibliography}
+
+
+
+\end{document}
