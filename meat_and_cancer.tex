@@ -52,7 +52,7 @@ Any Department\\
 \maketitle
 
 \begin{abstract}
-According to World Health Organization (WHO), processed meat has been declared Group 1 carcinogenic to humans. That means that according to epidemiological studies there is a convincing evidence that the agent causes cancer. However, reviewing some of the mainly referred studies with the lenses of causal inference analysis reveals possible flaws that would invalidate these conclusions. The author(s) intention is to discuss these studies with statistical rigor. By applying last accepted knowledge in the field of causal diagrams and \textit{do-calculus}. With main focus on transparent exposition of health domain assumptions. And the translation of these assumptions into explicit language, diagrams and formulas. So the veracity of domain assumptions can be refuted according to domain expertise. And any conclusion derived from these assumptions being validated or invalidated on the bases of axiomatic logic and maths.
+According to World Health Organization (WHO), processed meat has been declared Group 1 carcinogenic to humans. That means that according to epidemiological studies there is a convincing evidence that the agent causes cancer. However, reviewing some of the mainly referred studies with the lenses of causal inference analysis reveals possible flaws that would invalidate these conclusions. The author(s) intention is to discuss these studies with statistical rigor. By applying last accepted knowledge in the field of causal inference as diagrams and \textit{do-calculus}. With main focus on transparent exposition of health domain assumptions. And the translation of these assumptions into explicit language, diagrams and formulas. So the veracity of domain assumptions can be refuted according to domain expertise. And any conclusion derived from these assumptions being validated or invalidated on the bases of axiomatic logic and maths.
 
 % Despite how unhealthy or unsustainable meat consumption could be, carcinogenic Group 1 statements could be based on uncomplete models, but they at least should be based on correct analysis.
 \end{abstract}
@@ -67,7 +67,24 @@ According to World Health Organization (WHO), processed meat has been declared G
 
 The consumption of processed meat was associated with small increases in the risk of cancer in the studies reviewed. In these studies, the risk generally increased with the amount of meat consumed \cite{whoint}.
 
- In the monograph the authors describe five criteria they applied in reviewing and interpreting the available literature in order to be considered for their meta-analysis. One of these criteria, which we will focus specifically on this paper is the "Adjustment for potential confounding factors"
+
+In the next sections we will focus on three studies supporting IARC conclusions, and we will remark different flaws detected in them. Particularly:
+
+\begin{itemize}
+
+\item  In Section \ref{sec:chan}, as starting point we will base on IARC monograph and Chan meta-analysis \cite{chan}, as it's the main reference for IARC when they conclude "each 50 gram portion of processed meat eaten daily increases the risk of colorectal cancer by 18\%". And we will remark potential problems related to heterogeneity. Though our focus will be in introducing possible problems related to not conditioning on missing confounders (Section 3), or conditioning on a collider (Section 4).
+\item In Section \ref{sec:sandhu}, as example of discarding a possible confounder based on a possible wrong procedure we present Sandhu et al meta-analysis \cite{sandhu}, both referenced by Chan's \cite{chan} and IARC monograph \cite{monograph}.
+\item Finally in Section \ref{sec:cross}, as an example of generating strange and wrong conclusions based on the wrong procedure of conditioning on a collider, we'll discuss a study by Cross et al \cite{cross}. This study is particularly relevant as it's the one that contributes the most to results on Chan's meta-analysis.
+\end{itemize}
+
+For this purposes we will use different causal inference techniques as causal diagrams and \textit{do-calculus}, as presented by Pearl's et al \cite{bookofwhy}.
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\section{Processed Meat and Colorectal Cancer Incidence}
+\label{sec:chan}
+
+In the IARC monograph \cite{monograph} the authors describe five criteria they applied in reviewing and interpreting the available literature in order to be considered for their meta-analysis. One of these criteria, which we will focus specifically on this paper is the "Adjustment for potential confounding factors"
 
 
 Close to 20 large,
@@ -86,7 +103,7 @@ The Working Group considered that approximately
 10\% of all case–control studies reviewed
 were informative for the assessment of the
 consumption of processed meat in relation to
-incidence of cancer of the colorectum. So they should be 150/10 = 15 studies. Anyway, just after that they say: "Six of the nine studies considered showed positive associations with cancer of the colorectum.". A typo?
+incidence of cancer of the colorectum. So they should be 150/10 = 15 studies. Anyway, just after that they say: "Six of the nine studies considered showed positive associations with cancer of the colorectum.". Is this a typo?
 
 Moreover they present conclusions from a meta-analysis including data from 10
 cohort studies that reported a statistically significant
@@ -95,14 +112,7 @@ of red meat and/or processed meat and cancer of
 the colorectum. More concretely, they refer to Chan et al \cite{chan}
 %"[...] the relative risks for the highest compared with the lowest intake [...] for anincrease of 100 g/day of red meat was 1.17 (95\% CI, 1.05–1.31; 8 studies) for colorectal cancer [...] For processed meats, the relative risk for the highest compared with the lowest intake was 1.17 (95\% CI, 1.09–1.25; I2 = 6\%; 13 studies) for colorectal cancer" "The relative risks for an increase of 50 g/day were 1.18 (95\% CI, 1.10–1.28; I2 = 12\%; 9 studies) for colorectal cancer, ".
 
-Conclusion on dose-response association for processed meat is summarized in \cite{monograph} as "[...] each 50 gram portion of processed meat eaten daily increases the risk of
-colorectal cancer by 18\%"
 
-In the next section we will focus on Chan meta-analysis \cite{chan}
-
-
-\section{Processed Meat and Colorectal Cancer Incidence}
-\label{sec:headings}
 
 In \cite{chan} they "conducted meta-analyses
 for red and processed meats, combined and separately, using the
@@ -127,7 +137,6 @@ confounders as potential explanatory factors".
 
 
 
-See Section \ref{sec:headings}.
 
 \subsection{Dose-response Analysis on Processed Meat. And Confounders}
 
@@ -141,15 +150,14 @@ attenuated after better adjustment for confounders and longer followup \cite{wei
 
 Although we cannot rule out residual confounding, most studies
 included in the meta-analyses adjusted results by smoking, alcohol
-consumption, BMI and physical activity [18,22–24,26,27,
-50,51,54,56,57,64] in addition to age, sex and energy; in several
+consumption, BMI and physical activity in addition to age, sex and energy; in several
 cohort studies the multivariate adjusted models also included folate
-intake [18,24,34,50], and other studies additionally adjusted for
-aspirin or other anti-inflammatory drug use [23,25,53,54]. Several
+intake, and other studies additionally adjusted for
+aspirin or other anti-inflammatory drug use. Several
 potential confounders were not included in the final statistical
 models in some studies because, as the authors reported, their
 inclusion in the model did not substantially modified the relative
-risk estimates [19,33,49,52,60,63].
+risk estimates.
 
 Concretely: "In all studies, relative risk estimates were adjusted for age and
 sex, and all except two adjusted for total energy intake. More than
@@ -167,14 +175,14 @@ in European studies (RR for 100 g/day increase = 1.29, 95\% CI =
 (RR for 100 g/day increase = 1.11, 95\% CI = 0.8621.44) (4 studies, 1476
 cases) and Asia-Pacific studies (RR for100 g/day increase = 0.94, 95\% CI =
 0.6921.27, P = 0.67) (3 studies, 732 cases)."
+
 The biggest study analyzed in \cite{chan} regarding number of people was \cite{cross} with 494036 men and women. In this study adjusts were made on "Age, sex, ethnicity, BMI, smoking habits, alcohol intake, physical activity, total energy intake, fruit and vegetable intake, education level, marital status, family history of cancer"
 This study according to weight and results is the one that contributes the most to RR for colorectal cancer on the consumption of processed meat on Chan's meta-analysis. In the next section we'll try to proof that Cross study could be flawed because of a wrong assumption and wrong experiment design on adjusting on too much variables.
 
 
 
-
 \section{Don't Discard Fiber, Vegetables, Fruits or Life-style as Possible Confounder}
-
+\label{sec:sandhu}
 In 2001 Sandhu et al published a meta-analysis on the relation between meat consumption and colorectal cancer \cite{sandhu}. When discussing "Meat and Other Dietary and Associated Factors" they say: "However, the current
 prospective epidemiological data show only a weak negative
 association between vegetables and fruits consumption and risk
@@ -225,6 +233,7 @@ Other of the biggest studies like English et al \cite{english} included also fis
 Moreover, considering dietary lifestyle as a confounder helps to understand some strange results obtained in studies like \cite{cross} that we will discuss in the next section.
 
 \section{Leukemia versus Life-style Cancers. The Berkson Bias}
+\label{sec:cross}
 
 Extracted from Cross study on 2007 \cite{cross}: "Surprisingly, both leukemia and melanoma were inversely associated with processed meat intake; the inverse association for leukemia was mainly for lymphocytic leukemia (n = 534; HR = 0.70; 95\% CI = 0.52–0.93; p for trend = 0.05) and not myeloid and monocytic leukemia (n = 457; HR = 0.88; 95\% CI = 0.64–1.20; p for trend = 0.73). The associations between processed meat intake and cancer risk are summarized in Figure 2, in order of risk magnitude."
 
@@ -262,6 +271,9 @@ Chan et al.
 \newblock Red and Processed Meat and Colorectal Cancer Incidence: Meta-Analysis of Prospective Studies
 https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020456\&type=printable
 
+\bibitem{bookofwhy}
+Pearl et al.
+\newblock The Book of Why. The New Science of Cause and Effect
 
 \bibitem{aicr}
 World Cancer Research Fund/American Institute for Cancer Research. (2007)
