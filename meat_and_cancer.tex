@@ -141,23 +141,17 @@ And according to weight and results Cross's study is the one that contributes th
 
 
 
-\section{Don't Discard Fiber, Vegetables, Fruits or Life-style as Possible Confounder}
+\section{Don't Discard Fiber, Vegetables, Fruits or Life-style as Possible Confounders}
 \label{sec:sandhu}
-In 2001 Sandhu et al published a meta-analysis on the relation between meat consumption and colorectal cancer \cite{sandhu}. When discussing "Meat and Other Dietary and Associated Factors" they say: "However, the current
+In 2001 Sandhu et al published a meta-analysis on the relation between meat consumption and colorectal cancer \cite{sandhu}. Discussing about "Meat and Other Dietary and Associated Factors" they wrote: "the current
 prospective epidemiological data show only a weak negative
 association between vegetables and fruits consumption and risk
-of colorectal cancer (4, 7). Four recent studies, two randomized
-trials on adenoma recurrence (57, 58) and two large prospective
-studies on colorectal cancer (59, 60) found no association
-among fiber, vegetables, and fruits consumption and risk of colorectal cancer. The two prospective studies based on the
-Nurses’ Health Study (59) and a combined analysis of the
-Nurses’ Heath Study and the Health Professionals’ Follow-up
-Study (60) both adjusted for red meat intake when ascertaining
-the effect of fiber and vegetables and fruits consumption on
-colorectal cancer risk, respectively. The multivariate estimates
-did not materially differ from the unadjusted estimates".
+of colorectal cancer. Four recent studies, two randomized
+trials on adenoma recurrence and two large prospective
+studies on colorectal cancer found no association
+among fiber, vegetables, and fruits consumption and risk of colorectal cancer."
 
-But even if the total effect from fiber, vegetables, and fruits consumption on colorrectal cancer is negligible, the direct effect could be important.
+But even if the total effect from fiber, vegetables, and fruits consumption on colorrectal cancer is negligible, matematically the direct effect even could be important. Under the assumption that consumption of vegetables was associated with consumption of meat via dietary lifestyle.
 
 As an example, considering:
 
@@ -180,17 +174,15 @@ If "no association among fiber, vegetables, and fruits consumption and risk of c
   P(Y|do(V))=P(Y)
 \end{equation}
 
-Otherwise, according to the provided causal diagram:
+Otherwise, according to the provided causal diagram, V blocks all back-door paths between X and Y. Thus:
 \begin{equation}
 P(Y|do(X))=\sum _{i=1}^{N} P(Y|X,V_i)P(V_i) \neq P (Y|X)
 \end{equation}
 
 
-So we shouldn't discard fiber, vegetables and fruits consumption as possible confounders on the basis of the previous analysis.
+On the basis of the previous analysis we still have no evidences to ignore direct effect of fiber, vegetables and fruits consumption with dietary lifestyle as possible confounder.
 
 Other of the biggest studies like English et al \cite{english} included also fish as possible cause.
-
-Moreover, considering dietary lifestyle as a confounder helps to understand some strange results obtained in studies like \cite{cross} that we will discuss in the next section.
 
 \section{Leukemia versus Life-style Cancers. The Berkson Bias}
 \label{sec:cross}
