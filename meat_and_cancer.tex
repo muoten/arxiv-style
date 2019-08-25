@@ -170,18 +170,51 @@ U \arrow{u} \arrow{r} &V \arrow{u}
 
 If "no association among fiber, vegetables, and fruits consumption and risk of colorectal cancer"
 \begin{equation}
-  P(Y|do(V))=P(Y)
+  P(Y|V)=P(Y)
 \end{equation}
 
 Otherwise, according to the provided causal diagram, V blocks all back-door paths between X and Y. Thus:
 \begin{equation}
-P(Y|do(X))=\sum _{i=1}^{N} P(Y|X,V_i)P(V_i) \neq P (Y|X)
+\label{eq:1}
+P(Y|do(X))=\sum _{i=1}^{N} P(Y|X,V_i)P(V_i)
+\end{equation}
+
+For instance if we consider that V is a binary variable, then:
+\begin{equation}
+\label{eq:1}
+P(Y|do(X))= P(Y|X,\overline V)P(\overline V) + P(Y|X,V)P(V) = P(Y|X)(P(\overline V)+P(V)) = P(Y|X)
+\end{equation}
+
+On the basis of the previous analysis we still have no evidences that justify to ignore V.
+
+For instance, in the specific case where X and V are binary variables, U = constant = 1. Thus \begin{equation} X = 1 - V = \overline{V}\end{equation}
+
+Then:
+\begin{equation}
+P(Y|do(X))=P(Y|X,\overline V)P(\overline V)+P(Y|X,V)P(V) = P(Y|X,X)(1-P(V))+P(Y|X,\overline X)P(\overline X)
+\end{equation}
+
+So finally:
+\begin{equation}
+P(Y|do(X))=P(Y|X)(1-P(V)) = P(Y|X)\times 1 = P(Y|X)
 \end{equation}
 
 
-On the basis of the previous analysis we still have no evidences to ignore direct effect of fiber, vegetables and fruits consumption with dietary lifestyle as possible confounder.
+As an example, ignoring the effect of V we get:
 
-Other of the biggest studies like English et al \cite{english} included also fish as possible cause.
+\begin{tikzcd}
+X \arrow{r} &Y\\
+U \arrow{u} &V
+\end{tikzcd}
+
+With no backdoor paths between X and Y. So it would be:
+
+\begin{equation}
+P(Y|do(X))=P(Y|X)
+\end{equation}
+
+
+%Other of the biggest studies like English et al \cite{english} included also fish as possible cause.
 
 \section{Leukemia versus Life-style Cancers. The Collider Bias}
 \label{sec:cross}
