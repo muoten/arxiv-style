@@ -1,7 +1,15 @@
 \documentclass{article}
 
 
+
+
+%\let\LaTeXbibliographystyle\bibliographystyle
+%\def\bibliographystyle#1{}
 \usepackage{arxiv}
+\usepackage[superscript,biblabel]{cite}
+%\usepackage{ama}
+%\let\bibliographystyle\LaTeXbibliographystyle
+%\bibliographystyle{ama}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
@@ -17,21 +25,23 @@
 
 \graphicspath{{./images/}}
 
-\title{Meat \& cancer: a critical review based on causal analysis \it{(work in progress)}}
+\title{Meat \& cancer: a critical review based on causal analysis %\it{(work in progress)}
+}
 
 %\date{September 9, 1985}	% Here you can change the date presented in the paper title
 %\date{} 					% Or removing it
 
 \author{
-  Any volunteer? \\
-Any Department\\
-  Anywhere\\
+%  Any volunteer? \\
+%Any Department\\
+%  Anywhere\\
   %% examples of more authors
-   \And
+%   \And
  Enrique Otero \\
   Madrid, Spain\\
-  @eoteromuras \\
-  %\texttt{eoteromuras@gmail.com} \\
+  %@eoteromuras \\
+  \texttt{@eoteromuras}
+  %\texttt{enrique.otero@orange.com\thanks{This paper results from personal research in my leisure time, at the moment not funded by Orange Spain or any other affiliation}} \\
   %% \AND
   %% Coauthor \\
   %% Affiliation \\
@@ -53,7 +63,8 @@ Any Department\\
 \maketitle
 
 \begin{abstract}
-According to World Health Organization (WHO), processed meat has been declared Group 1 carcinogenic to humans. That means that according to epidemiological studies there is a convincing evidence that the agent causes cancer. However, reviewing some of the mainly referred studies with the lenses of causal inference analysis reveals possible flaws that would invalidate these conclusions. The author(s) intention is to discuss these studies with statistical rigour. By applying last accepted knowledge in the field of causal inference as diagrams and \textit{do-calculus}. With main focus on transparent exposition of health domain assumptions. And the translation of these assumptions into explicit language, diagrams and formulas. So the veracity of domain assumptions can be refuted according to domain expertise. And any conclusion derived from these assumptions being validated or invalidated on the basis of axiomatic logic and maths.
+According to World Health Organization (WHO), processed meat has been declared Group 1 carcinogenic to humans. That means that according to epidemiological studies there is a convincing evidence that the agent causes cancer. However, reviewing some of the mainly referred studies with the lenses of causal inference analysis reveals %possible
+flaws that would invalidate these conclusions. The author(s) intention is to discuss these studies with statistical rigour. By applying last accepted knowledge in the field of causal inference as diagrams and \textit{do-calculus}. With main focus on transparent exposition of health domain assumptions. And the translation of these assumptions into explicit language, diagrams and formulas. So the veracity of domain assumptions can be refuted according to domain expertise. And any conclusion derived from these assumptions being validated or invalidated on the basis of axiomatic logic and maths.
 
 % Despite how unhealthy or unsustainable meat consumption could be, carcinogenic Group 1 statements could be based on uncomplete models, but they at least should be based on correct analysis.
 \end{abstract}
@@ -75,26 +86,26 @@ In the next sections we will focus on two studies supporting IARC conclusions, a
 
 \item As starting point, in Section \ref{sec:iarc} we will present IARC monograph and Chan meta-analysis \cite{chan}, as it's the main reference for IARC when they conclude "each 50 gram portion of processed meat eaten daily increases the risk of colorectal cancer by 18\%". We will remark potential problems related to heterogeneity. And some considerations regarding confounders. %Though our focus will be in introducing possible problems related to not conditioning on missing confounders (Section 3), or conditioning on a collider (Section \ref{sec:cross}).
 %\item In Section \ref{sec:sandhu} we present Sandhu et al meta-analysis \cite{sandhu} as an example of discarding a plausible confounder based on a possible wrong procedure. Sandhu meta-analysis is both referenced by Chan's \cite{chan} and IARC monograph \cite{monograph}
-\item Finally in Section \ref{sec:cross} we'll discuss a study by Cross et al \cite{cross} as an example of generating strange and questionable conclusions based on the wrong procedure of conditioning on a collider. This study is particularly relevant as it's the one that contributes the most to results on Chan's meta-analysis.\footnote{%Analysis on Section \ref{sec:sandhu} has still much room for improvement. And
-Section \ref{sec:iarc} is maybe unnecessary large. So as an anxious reader you can skip directly to Section \ref{sec:cross}. Anyhow, feedback on the full document would be appreciated, either as a potential collaborator, critical reviewer or helpful hater :) LaTeX source on github \cite{mygithub}}
+\item Finally in Section \ref{sec:cross} we'll discuss a study by Cross et al \cite{cross} as an example of generating strange and questionable conclusions based on the wrong procedure of conditioning on a collider. This study is particularly relevant as it's the one that contributes the most to results on Chan's meta-analysis.%\footnote{%Analysis on Section \ref{sec:sandhu} has still much room for improvement. And
+%Section \ref{sec:iarc} is maybe unnecessary large. So as an anxious reader you can skip directly to Section \ref{sec:cross}. Anyhow, feedback on the full document would be appreciated, either as a potential collaborator, critical reviewer or helpful hater :) LaTeX source on github \cite{mygithub}}
 
 \end{itemize}
 
-For this purposes we will use different causal inference techniques as causal diagrams and \textit{do-calculus}, as presented by Pearl's et al \cite{bookofwhy}.
+For this purposes we will use different causal inference techniques as causal diagrams and \textit{do-calculus}, as presented by Pearl and Mackenzie \cite{bookofwhy}.
 
 %%%%%%%%%%%
 %%%%%%%%%%%
 \section{Processed Meat and Colorectal Cancer Incidence}
 \label{sec:iarc}
 
-In \cite{monograph} the IARC Working Group analyzed both "20 large [...] cohort studies [...] extended from as early as the 1990s until the 2010s", and "a large number of case-control studies (approximately 150)". The monograph describes also five criteria they applied in reviewing and interpreting the available literature in order to be considered for their meta-analysis. %One of these criteria, which we will focus specifically on this paper is the "Adjustment for potential confounding factors"
+IARC Working Group analyzed both "20 large [...] cohort studies [...] extended from as early as the 1990s until the 2010s", and "a large number of case-control studies (approximately 150)".\cite{monograph} The monograph describes also five criteria they applied in reviewing and interpreting the available literature in order to be considered for their meta-analysis. %One of these criteria, which we will focus specifically on this paper is the "Adjustment for potential confounding factors"
 
 Regarding case-control studies, they considered that "approximately 10\% of all case–control studies reviewed were informative for the assessment of the consumption of processed meat in relation to incidence of cancer of the colorectum". Taking into account previous statement of approximately 150 control-studies, they should be 150/10 = 15 informative studies. However they say: "Six of the nine studies considered showed positive associations with cancer of the colorectum." Could this difference (9 vs. 15) be a typo?
 
 In relation to cohort studies, the IARC presented conclusions from a meta-analysis including data from 10
 of these studies that "reported a statistically significant dose–response association between consumption
 of red meat and/or processed meat and cancer of the colorectum". More concretely, they refer to Chan et al \cite{chan}, where "dose-response relationships were expressed per increment of intake of 100 grams
-per day for red and processed meat, and 50 grams per day for processed meat as in previous meta-analyses \cite{aicr}, \cite{sandhu}"
+per day for red and processed meat, and 50 grams per day for processed meat as in previous meta-analyses".\cite{sandhu}%\cite{aicr}
 
 
 \subsection{Dose-response Analysis on Processed Meat. Heterogeneity and Confounders}
@@ -128,12 +139,12 @@ family history of colorectal cancer, or plant food or folate intake.
 In some studies, the estimates were controlled for use of nonsteroidal
 anti-inflammatory drugs, fish or white meat intake". %And also: "several potential confounders were not included in the final statistical models in some studies because, as the authors reported, their inclusion in the model did not substantially modified the relative risk estimates." However, sometimes the decision of excluding a confounder could be flawed, not only based on domain assumptions, but also in the logical procedure itself, as we will discuss on the example of Section \ref{sec:sandhu}
 
-Chan's paper refers to other studies with similar conclusions, like \cite{aicr,wei2009}.
+Chan's paper refers to other studies with similar conclusions.\cite{aicr,wei2009}
 Though it adds also: "In a more recent article on the NHS and the HPFS, the
 associations of red meat and processed meat and colon cancer were
-attenuated after better adjustment for confounders and longer followup" \cite{wei}
+attenuated after better adjustment for confounders and longer followup".\cite{wei}
 
-The biggest study analyzed in \cite{chan} regarding number of people was Cross et al. \cite{cross} with 494036 men and women. In this study adjusts were made on "Age, sex, ethnicity, BMI, smoking habits, alcohol intake, physical activity, total energy intake, fruit and vegetable intake, education level, marital status, family history of cancer"
+The biggest study analyzed by Chan's et al\cite{chan} regarding number of people was Cross et al\cite{cross} with 494036 men and women. In this study adjusts were made on "Age, sex, ethnicity, BMI, smoking habits, alcohol intake, physical activity, total energy intake, fruit and vegetable intake, education level, marital status, family history of cancer".
 And according to weight and results Cross's study is the one that contributes the most to RR for colorectal cancer on the consumption of processed meat on Chan's meta-analysis. So in section \ref{sec:cross} we'll try to prove that Cross study could be flawed due to implicitly conditioning on a collider.
 
 
@@ -214,7 +225,9 @@ As previously said, Cross' analysis, published on 2007 \cite{cross}, was the sec
 
 In this context, we will show in this section an example of probable bad control in Cross' study leading to some strange results.
 
-Extracted from \cite{cross}: "Surprisingly, both leukemia and melanoma were inversely associated with processed meat intake; the inverse association for leukemia was mainly for lymphocytic leukemia (n = 534; HR\footnote{Hazard Ratio, not related to the brand new unworn Real Madrid player. Joking aside, it would be also interesting to go deeper into how Cross's Hazard Ratios (HR) have been converted to Chan's pooled Relative Risks (RR). Being these metrics similar but not the same} = 0.70; 95\% CI = 0.52–0.93; p for trend = 0.05) and not myeloid and monocytic leukemia (n = 457; HR = 0.88; 95\% CI = 0.64–1.20; p for trend = 0.73)."
+Extracted from \cite{cross}: "Surprisingly, both leukemia and melanoma were inversely associated with processed meat intake; the inverse association for leukemia was mainly for lymphocytic leukemia (n = 534; HR\footnote{HR stands for Hazard Ratio.
+%, not related to the brand new unworn Real Madrid player. Joking aside,
+It would be also interesting to go deeper into how Cross's Hazard Ratios (HR) have been converted to Chan's pooled Relative Risks (RR). Being these metrics similar but not the same} = 0.70; 95\% CI = 0.52–0.93; p for trend = 0.05) and not myeloid and monocytic leukemia (n = 457; HR = 0.88; 95\% CI = 0.64–1.20; p for trend = 0.73)."
 
 But according to described cohort follow-up: "[it] was calculated from baseline (1995–1996) until censoring at the end of 2003, or when the participant moved out of one of the eight study areas, had a cancer diagnosis, or died, whichever came first" \cite{cross}. Thus, analyzing several types of cancer as target while implicitely conditioning on not having any other cancer converts the variable "any cancer" in a collider.
 
@@ -233,12 +246,12 @@ X \arrow{d} \arrow{r} &Y \arrow{d}\\
 C1 \arrow{r} &C
 \end{tikzcd}
 
-So conditioning on the collider C opens the path Y -> C <-C1 <-X, invalidating the results of the study. This situation is typically known as \textit{collider bias}. Being a well known example the \textit{Berkson Paradox} described for instance in Pearl's et al \textit{The Book of Why} \cite{bookofwhy}.
+So conditioning on the collider C opens the path Y -> C <-C1 <-X, invalidating the results of the study. This situation is typically known as \textit{collider bias}. Being a well known example the \textit{Berkson Paradox} described for instance in Pearl and Mackenzie's \textit{The Book of Why}.\cite{bookofwhy}
 
 And this could explain these strange results, where cancers as colorectal, usually associated with dietary lifestyle, have Hazard Ratios above 1 (HR=1.2), whereas leukemia shows apparently an inverse relation to processed meat, with an HR of 0.7. As we can see in Figure \ref{fig:cross}
 \begin{figure}
   \includegraphics[scale=0.75]{tileshop2}
-  \caption{HRs and 95\% CIs for the 5th Versus 1st Quintile of Processed Meat Intake and Cancer Risk for Both Sexes Combined (Except for Sex-Specific Cancers). From Cross et al. \cite{cross}}
+  \caption{HRs and 95\% CIs for the 5th Versus 1st Quintile of Processed Meat Intake and Cancer Risk for Both Sexes Combined (Except for Sex-Specific Cancers). From Cross et al.\cite{cross}}
   \label{fig:cross}
 \end{figure}
 
@@ -247,12 +260,21 @@ And this could explain these strange results, where cancers as colorectal, usual
 
 Moreover even despite or because of the collider bias some patterns could be noticed. For instance, between the 4 most prevalent types of cancer, colorectal and lung cancer show similar results in this study, with higher HR values. While prostate and female breast show values closer to 1. Besides, Cross et al point that "a stepwise addition of the covariates to a simple age- and sex-adjusted model showed that the effects of red and processed meat intake on cancer risk were attenuated the most by the addition of the smoking variable to the models". %smoking-meat paradox? smells like collider or counfounder spirit.
 
-All this patterns and hints could be useless because of the collider bias. Or they could indicate "dietary" and/or "life style" as possible confounder of both meat consumption and smoking and some types of cancers as colorectal or lung. While prostate or breast cancer would be less dependent from presumptive or proved bad habits. \footnote{It would be great if we could demonstrate someday this hypothesis of "dietary" \& "life-style" cancers. Or at least trying to do it}
+All this patterns and hints could be useless because of the collider bias. Or they could indicate "dietary" and/or "life style" as possible confounder of both meat consumption and smoking and some types of cancers as colorectal or lung. While prostate or breast cancer would be less dependent from presumptive or proved bad habits. %\footnote{It would be great if we could demonstrate someday this hypothesis of "dietary" \& "life-style" cancers. Or at least trying to do it}
 
 
 \section{Conclusions}
 
-\textbf{\textit{To be finished...}}
+%\textbf{\textit{To be finished...}}
+Processed meat has been classified by WHO as Group 1 carcinogenic to humans \cite{whoint}. Several analysis have been considered to generate this conclusion. Specifically, WHO claims that "an analysis of data from 10 studies estimated that every 50 gram portion of processed meat eaten daily increases the risk of colorectal cancer by about 18\%". This conclusion comes from Chan's et al meta-analysis \cite{chan}. And this meta-analysis has been highly dependent on Cross's et al study \cite{cross}.
+
+First of all some critizism could be made on the heterogeneity of Chan's meta-analysis. And I-squared as an inadequate measure of this heterogeneity in this case due to the small number of studies \cite{hippel}.
+
+But our goal was to review with "causal glasses" the association between meat and cancer. And our main contribution was to demonstrate that Cross's case study is an example of collider bias. Calling into question Chan's conclusions and WHO's claim.
+
+Moreover, explicitly showing assumptions and causal diagrams can help synergies between health domain and causal inference in statistics. Avoiding knowledge silos and contributing to new advances on nutrition and cancer research.
+
+
 
 
 \bibliographystyle{unsrt}
@@ -264,66 +286,52 @@ All this patterns and hints could be useless because of the collider bias. Or th
 \begin{thebibliography}{1}
 
 \bibitem{whoint}
-\newblock Q\&A on the carcinogenicity of the consumption of red meat and processed meat
-\newblock https://www.who.int/features/qa/cancer-red-meat/en/
-\newblock October 2015
+Q\&A on the carcinogenicity of the consumption of red meat and processed meat. World Health Organization. https://www.who.int/features/qa/cancer-red-meat/en/. Published October 2015. Accessed September 3, 2019.
 
 \bibitem{lancet}
-Bouvard V. et al.
-\newblock Carcinogenicity of consumption of red and processed meat
+Bouvard V, Loomis D, Guyton K et al. Carcinogenicity of consumption of red and processed meat. Lancet Oncol. 2015;16(16):1599-6006
 %\newblock https://www.researchgate.net/profile/Veronique\_Bouvard/publication/283443910\_Carcinogenicity\_of\_consumption\_of\_red\_and\_processed\_meat/links/5ac393f4aca272a2c99910f1/Carcinogenicity-of-consumption-of-red-and-processed-meat.pdf
 
 \bibitem{monograph}
-IARC Monographs on the Evaluation of Carcinogenic Risks to Humans. Red Meat and Processed Meat. Vol 114
-https://monographs.iarc.fr/wp-content/uploads/2018/06/mono114.pdf
+IARC Monographs on the Evaluation of Carcinogenic Risks to Humans. Red Meat and Processed Meat. Vol 114. International Agency for Research on Cancer. https://monographs.iarc.fr/wp-content/uploads/2018/06/mono114.pdf. Published June 2018. Accessed September 3, 2019.
 
 \bibitem{chan}
-Chan et al.
-\newblock Red and Processed Meat and Colorectal Cancer Incidence: Meta-Analysis of Prospective Studies
-https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020456\&type=printable
-
-\bibitem{bookofwhy}
-Pearl et al.
-\newblock The Book of Why. The New Science of Cause and Effect
-
-\bibitem{aicr}
-World Cancer Research Fund/American Institute for Cancer Research. (2007)
-Food, Nutrition, Physical Activity, and the Prevention of Cancer: a Global
-Perspective Washington DC: AICR.
-
-\bibitem{sandhu}
-Sandhu MS, White IR, McPherson K (2001) Systematic review of the
-prospective cohort studies on meat consumption and colorectal cancer risk: a
-meta-analytical approach. Cancer Epidemiol Biomarkers Prev 10: 439–446
-
-\bibitem{hippel}
-Von Hippel P.
-The heterogeneity statistic I2 can be biased in small meta-analyses
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4410499/
-BMC Med Res Methodol. 2015; 15: 35.
-
-\bibitem{wei}
-Wei EK, Giovannucci E, Wu K, Rosner B, Fuchs CS, et al. (2004) Comparison
-of risk factors for colon and rectal cancer. IntJCancer 108: 433–442.
-
-\bibitem{wei2009}
-Wei EK, Colditz GA, Giovannucci EL, Fuchs CS, Rosner BA (2009)
-Cumulative risk of colon cancer up to age 70 years by risk factor status using
-data from the Nurses’ Health Study. AmJEpidemiol 170: 863–872.
-
-\bibitem{english}
-English DR, MacInnis RJ, Hodge AM, Hopper JL, Haydon AM, et al. (2004)
-Red meat, chicken, and fish consumption and risk of colorectal cancer. Cancer
-Epidemiol Biomarkers Prev 13: 1509–1514.
+Chan D, Lau R, Aune D et al. Red and Processed Meat and Colorectal Cancer Incidence: Meta-Analysis of Prospective Studies. PLoS One. 2011;6(6):e20456
+%https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0020456\&type=printable
 
 \bibitem{cross}
-Cross et al. 2007
-\newblock A prospective study of red and processed meat intake in relation to cancer risk.
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2121107/
+Cross AJ, Leitzmann MF, Gail MH, Hollenbeck AR, Schatzkin A, Sinha R. A prospective study of red and processed meat intake in relation to cancer risk. PLoS Med. 2007;4(12):e325. doi:10.1371/journal.pmed.0040325
 
-\bibitem{mygithub}
-LaTeX source for this draft paper:
-https://github.com/muoten/arxiv-style/blob/master/meat\_and\_cancer.tex
+\bibitem{bookofwhy}
+Pearl J, Mackenzie D. The Book of Why. The New Science of Cause and Effect. New York, NY: Basic Books; 2018.
+
+\bibitem{sandhu}
+Sandhu MS, White IR, McPherson K. Systematic review of the prospective cohort studies on meat consumption and colorectal cancer risk: a meta-analytical approach. Cancer Epidemiol Biomarkers Prev. 2001 May;10(5):439-46.
+
+\bibitem{hippel}
+von Hippel PT. The heterogeneity statistic I2 can be biased in small meta-analyses. BMC Med Res Methodol. 2015 Apr 14;15:35. doi: 10.1186/s12874-015-0024-z.
+
+\bibitem{aicr}
+World Cancer Research Fund / American Institute for Cancer Research.
+Food, Nutrition, Physical Activity, and the Prevention of Cancer: a Global
+Perspective. Washington, DC: American Institute for Cancer Research. https://www.wcrf.org/sites/default/files/english.pdf. Published 2007. Accessed September 3,2019.
+
+\bibitem{wei2009}
+Wei EK, Colditz GA, Giovannucci EL, Fuchs CS, Rosner BA. Cumulative risk of colon cancer up to age 70 years by risk factor status using data from the Nurses’ Health Study. Am J Epidemiol. 2009 Oct 1;170(7):863-72. doi: 10.1093/aje/kwp210.
+
+\bibitem{wei}
+Wei EK, Giovannucci E, Wu K et al. Comparison of risk factors for colon and rectal cancer. Int J Cancer. 2004 Jan 20;108(3):433-42.2.
+
+%\bibitem{english}
+%English DR, MacInnis RJ, Hodge AM, Hopper JL, Haydon AM, et al. (2004)
+%Red meat, chicken, and fish consumption and risk of colorectal cancer. Cancer
+%Epidemiol Biomarkers Prev 13: 1509–1514.
+
+
+
+%\bibitem{mygithub}
+%LaTeX source for this draft paper:
+%https://github.com/muoten/arxiv-style/blob/master/meat\_and\_cancer.tex
 \end{thebibliography}
 
 
